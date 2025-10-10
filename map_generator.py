@@ -2,7 +2,8 @@ from settings import *
 import random as r
 from entities import Wall,Entrance,Exit
 
-def create_map():
+def create_map()-> tuple[Entrance,Exit]:
+    """Creates a new map and places the entrance and exit."""
     print("Creating map...")
     with open("map.txt","w") as f:
         
@@ -34,7 +35,8 @@ def create_map():
                 exit = Exit(x*WIDTH_SIZE ,y*HEIGHT_SIZE,WIDTH_SIZE,HEIGHT_SIZE)
     return entrance, exit
 
-def place_entrance_exit(map):
+def place_entrance_exit(map:list) -> None:
+    """Places the entrance and exit in random free spaces on the map."""
     free = [(x,y) for x in range(DIV) for y in range(DIV) if map[y][x] == "."]
     print("Free spaces:",len(free))
     entrance = r.choice(free)
@@ -49,7 +51,8 @@ def place_entrance_exit(map):
             f.write("".join(line) + "\n")
 
 
-def load_map():
+def load_map()-> list:
+    """Loads the map from the map.txt file."""
     with open("map.txt","r") as f:
         walls = [[None for _ in range(DIV)] for _ in range(DIV)]
         for y,line in enumerate(f.readlines()):
@@ -57,7 +60,8 @@ def load_map():
                 walls[y][x] = column
     return walls
 
-def convert_map(map):
+def convert_map(map:list) -> list:
+    """Converts the map from characters to objects."""
     for y,line in enumerate(map):
         for x,column in enumerate(line):
             if column == WALL:

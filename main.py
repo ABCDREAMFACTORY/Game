@@ -20,7 +20,8 @@ def show_map(objects:list) -> None:
 
             object.show(screen)
 
-def keys():
+def keys()-> tuple[int,int]:
+    """Returns the direction based on the keys pressed."""
     keys = pygame.key.get_pressed()
     dx,dy = 0,0
     if keys[pygame.K_UP]:
@@ -34,6 +35,7 @@ def keys():
     return dx,dy
 
 def try_move_player(dx: int, dy: int, objects: list, player: Player) -> None:
+    """Tries to move the player in the given direction if there is no wall."""
     if dx == 0 and dy == 0:
         return
 
