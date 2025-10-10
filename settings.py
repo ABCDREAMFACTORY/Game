@@ -1,10 +1,11 @@
+import math
+
 WIDTH = 1280
 HEIGHT = 720
 BLACK = (0,0,0)
-NB_WALL = 10
-DIV = 20
-WIDTH_SIZE = WIDTH//DIV
-HEIGHT_SIZE = HEIGHT//DIV
+DIV = 40
+WIDTH_SIZE = math.ceil(WIDTH / DIV)
+HEIGHT_SIZE = math.ceil(HEIGHT / DIV)
 WALL = "w"
 ENTRANCE = "e"
 EXIT = "x"
