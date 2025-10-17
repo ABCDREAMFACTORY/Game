@@ -27,6 +27,9 @@ def create_map()-> tuple[Entrance,Exit]:
     print("Map created")
     print("-"*20)
 
+    entrance = Entrance(0,0,0,0)
+    exit = Exit(0,0,0,0)
+
     for y,line in enumerate(load_map()):
         for x,obj in enumerate(line):
             if obj == "e":
@@ -54,7 +57,7 @@ def place_entrance_exit(map:list) -> None:
 def load_map()-> list:
     """Loads the map from the map.txt file."""
     with open("map.txt","r") as f:
-        walls = [[None for _ in range(DIV)] for _ in range(DIV)]
+        walls = [["" for _ in range(DIV)] for _ in range(DIV)]
         for y,line in enumerate(f.readlines()):
             for x,column in enumerate(line.strip()):
                 walls[y][x] = column
@@ -71,3 +74,20 @@ def convert_map(map:list) -> list:
             elif column == EXIT:
                 map[y][x]= Exit(x*WIDTH_SIZE,y*HEIGHT_SIZE,WIDTH_SIZE,HEIGHT_SIZE)       
     return map
+
+
+def get_entrance_position_grid()-> tuple[int,int]:
+    map = load_map()
+    for y,line in enumerate(map):
+        for x,column in enumerate(line):
+            if column == ENTRANCE:
+                return x,y
+    return 0,0
+
+def get_exit_position_grid() -> tuple[int,int]:
+    map = load_map()
+    for y,line in enumerate(map):
+        for x,column in enumerate(line):
+            if column == EXIT:
+                return x,y
+    return 0,0

@@ -13,7 +13,7 @@ class Wall:
 class Entrance:
     def __init__(self, x, y, width, height):
         self.rect = pygame.Rect(x, y, width, height)
-        self.color = (0, 255, 0)
+        self.color = (0, 0, 255)
         
     def show(self, screen: pygame.Surface) -> None:
         """Draws the entrance on the given screen."""
@@ -23,7 +23,7 @@ class Entrance:
 class Exit:
     def __init__(self, x, y, width, height):
         self.rect = pygame.Rect(x, y, width, height)
-        self.color = (255, 0, 0)
+        self.color = (0, 255,0)
 
     def show(self, screen: pygame.Surface) -> None:
         """Draws the exit on the given screen."""
@@ -35,9 +35,9 @@ class Player:
 
     def show(self, screen: pygame.Surface) -> None:
         """Draws the player on the given screen."""
-        pygame.draw.rect(screen, (0, 0, 255), self.rect)
+        pygame.draw.rect(screen, (255,0,0), self.rect)
 
-    def move(self, dx:float, dy:float,width:float,height: float) -> None:
+    def move(self, dx:int, dy:int,width:int,height: int) -> None:
         """Moves the player by the given delta values."""
         self.rect.x += dx * width
         self.rect.y += dy * height
